@@ -22,16 +22,33 @@
     SOFTWARE.
  */
 
-package com.github.willyancaetano.junit;
+package com.github.thiagohbn.junit;
 
-public class TransferenciaEntreContas {
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-    public void transfere(Conta contaOrigem, Conta contaDestino, int valor) {
-        if(valor <= 0) {
-            throw new IllegalArgumentException("valor deve ser maior que zero");
-        }
+/**
+ * Classe apresentando mais detalhes das asserções
+ */
+public class ContaTest {
 
-        contaDestino.lancaCredito(valor);
-        contaOrigem.lancaDebito(valor);
+    @Test
+    void validaSaldo() {
+        Conta conta = new Conta("123456", 100);
+        Assertions.assertNotNull(conta);
+
+        conta.lancaCredito(50);
+
+        Assertions.assertEquals(150, conta.getSaldo());
+
+        conta.lancaDebito(50);
+
+        Assertions.assertEquals(100, conta.getSaldo());
+
+        Assertions.assertNotEquals(101, conta.getSaldo());
+
+        conta = null;
+        Assertions.assertNull(conta);
     }
+
 }

@@ -22,33 +22,36 @@
     SOFTWARE.
  */
 
-package com.github.willyancaetano.junit;
+package com.github.thiagohbn.junit;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import java.util.logging.Logger;
 
 /**
- * Classe apresentando mais detalhes das asserções
+ * "Hipotético" exemplo de uma classe que conecta com banco de dados. <br />
+ *
+ * <b>DISCLAIMER</b>: <i>Não é um exemplo real/atual desse cenário, serve apenas como exemplo para os testes com JUnit</i>
  */
-public class ContaTest {
+public class GerenciadorDeConexaoComBancoDeDados {
 
-    @Test
-    void validaSaldo() {
-        Conta conta = new Conta("123456", 100);
-        Assertions.assertNotNull(conta);
+    private static final Logger LOGGER = Logger.getLogger(GerenciadorDeConexaoComBancoDeDados.class.getName());
 
-        conta.lancaCredito(50);
-
-        Assertions.assertEquals(150, conta.getSaldo());
-
-        conta.lancaDebito(50);
-
-        Assertions.assertEquals(100, conta.getSaldo());
-
-        Assertions.assertNotEquals(101, conta.getSaldo());
-
-        conta = null;
-        Assertions.assertNull(conta);
+    public static void iniciarConexao() {
+        //fez algo
+        LOGGER.info("Iniciou conexao");
     }
 
+    public static void finalizarConexao() {
+        //fez algo
+        LOGGER.info("finalizou conexao");
+    }
+
+    public static void insereDados(Pessoa pessoa) {
+        //insere pessoa no DB
+        LOGGER.info("inseriu dados");
+    }
+
+    public static void removeDados(Pessoa pessoa) {
+        //remove pessoa no DB
+        LOGGER.info("removeu dados");
+    }
 }

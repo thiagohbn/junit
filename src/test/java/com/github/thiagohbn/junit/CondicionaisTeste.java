@@ -22,41 +22,20 @@
     SOFTWARE.
  */
 
-package com.github.willyancaetano.junit;
+package com.github.thiagohbn.junit;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.Objects;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledForJreRange;
 
-public class Pessoa {
+import static org.junit.jupiter.api.condition.JRE.JAVA_11;
+import static org.junit.jupiter.api.condition.JRE.JAVA_17;
 
-    private String nome;
+public class CondicionaisTeste {
 
-    private LocalDateTime nascimento;
-
-    public Pessoa(String nome, LocalDateTime nascimento) {
-        this.nome = nome;
-        this.nascimento = nascimento;
-    }
-
-    public int getIdade() {
-        return (int) ChronoUnit.YEARS.between(nascimento, LocalDateTime.now());
-    }
-
-    public boolean ehMaiorDeIdade() {
-        return getIdade() >= 18;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pessoa pessoa = (Pessoa) o;
-        return nome.equals(pessoa.nome) && Objects.equals(nascimento, pessoa.nascimento);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nome, nascimento);
+    @Test
+    @EnabledForJreRange(min = JAVA_11, max = JAVA_17)
+    void validarAlgoSomenteNoUsuarioWillyan() {
+        Assertions.assertEquals(10, 5 + 5);
     }
 }

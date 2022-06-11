@@ -22,32 +22,34 @@
     SOFTWARE.
  */
 
-package com.github.willyancaetano.junit;
+package com.github.thiagohbn.junit;
 
-public class Conta {
+import org.junit.jupiter.api.*;
 
-    private String numeroConta;
+@TestMethodOrder(MethodOrderer.DisplayName.class)
+public class EscolhendoAOrdemTeste {
 
-    private int saldo;
-
-    public Conta(String numeroConta, int saldo) {
-        this.numeroConta = numeroConta;
-        this.saldo = saldo;
+    @DisplayName("Teste que valida se o usuário foi criado")
+    @Test
+    void validaFluxoA() {
+        Assertions.assertTrue(true);
     }
 
-    public String getNumeroConta() {
-        return numeroConta;
+    @DisplayName("B")
+    @Test
+    void validaFluxoB() {
+        Assertions.assertTrue(true);
     }
 
-    public int getSaldo() {
-        return saldo;
+    @DisplayName("C")
+    @Test
+    void validaFluxoC() {
+        Assertions.assertTrue(true);
     }
 
-    public void lancaCredito(int valor) {
-        this.saldo += valor;
-    }
-
-    public void lancaDebito(int valor) {
-        this.saldo -= valor;
+    @DisplayName("D")
+    @Test
+    void validaFluxoD() {
+        Assertions.assertTrue(true);
     }
 }

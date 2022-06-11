@@ -22,7 +22,7 @@
     SOFTWARE.
  */
 
-package com.github.willyancaetano.junit;
+package com.github.thiagohbn.junit;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;

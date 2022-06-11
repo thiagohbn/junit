@@ -22,41 +22,34 @@
     SOFTWARE.
  */
 
-package com.github.willyancaetano.junit;
+package com.github.thiagohbn.junit;
 
-import org.junit.jupiter.api.*;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-public class AfterBeforeTeste {
+public class PessoaTeste {
 
-    @BeforeAll
-    static void configuraConexao() {
-        GerenciadorDeConexaoComBancoDeDados.iniciarConexao();
-    }
-
-    @BeforeEach
-    void insereDadosParaTeste() {
-        GerenciadorDeConexaoComBancoDeDados.insereDados(new Pessoa("João", LocalDateTime.of(2000, 1, 1, 13, 0, 0)));
-    }
-
-    @AfterEach
-    void removeDadosDoTeste() {
-        GerenciadorDeConexaoComBancoDeDados.removeDados(new Pessoa("João", LocalDateTime.of(2000, 1, 1, 13, 0, 0)));
+    @Test
+    void deveCalcularIdadeCorretamente() {
+        Pessoa jessica = new Pessoa("Jéssica", LocalDateTime.of(2000, 1, 1, 15, 0, 0));
+        Assertions.assertEquals(22, jessica.getIdade());
     }
 
     @Test
-    void validarDadosDeRetorno() {
-        Assertions.assertTrue(true);
+    void deveRetornarSeEhMaiorDeIdade() {
+        Pessoa jessica = new Pessoa("Jéssica", LocalDateTime.of(2000, 1, 1, 15, 0, 0));
+        Assertions.assertTrue(jessica.ehMaiorDeIdade());
+
+        Pessoa joao = new Pessoa("João", LocalDateTime.now());
+        Assertions.assertFalse(joao.ehMaiorDeIdade());
     }
 
     @Test
-    void validarDadosDeRetorno2() {
-        Assertions.assertNull(null);
-    }
-
-    @AfterAll
-    static void finalizarConexao() {
-        GerenciadorDeConexaoComBancoDeDados.finalizarConexao();
+    void validaIgualdade() {
+        Pessoa pessoa = new Pessoa("Pessoa 1", LocalDateTime.now());
+        Assertions.assertSame(pessoa, pessoa);
     }
 }

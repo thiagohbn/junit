@@ -22,20 +22,41 @@
     SOFTWARE.
  */
 
-package com.github.willyancaetano.junit;
+package com.github.thiagohbn.junit;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledForJreRange;
+import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.condition.JRE.JAVA_11;
-import static org.junit.jupiter.api.condition.JRE.JAVA_17;
+import java.time.LocalDateTime;
 
-public class CondicionaisTeste {
+public class AfterBeforeTeste {
+
+    @BeforeAll
+    static void configuraConexao() {
+        GerenciadorDeConexaoComBancoDeDados.iniciarConexao();
+    }
+
+    @BeforeEach
+    void insereDadosParaTeste() {
+        GerenciadorDeConexaoComBancoDeDados.insereDados(new Pessoa("João", LocalDateTime.of(2000, 1, 1, 13, 0, 0)));
+    }
+
+    @AfterEach
+    void removeDadosDoTeste() {
+        GerenciadorDeConexaoComBancoDeDados.removeDados(new Pessoa("João", LocalDateTime.of(2000, 1, 1, 13, 0, 0)));
+    }
 
     @Test
-    @EnabledForJreRange(min = JAVA_11, max = JAVA_17)
-    void validarAlgoSomenteNoUsuarioWillyan() {
-        Assertions.assertEquals(10, 5 + 5);
+    void validarDadosDeRetorno() {
+        Assertions.assertTrue(true);
+    }
+
+    @Test
+    void validarDadosDeRetorno2() {
+        Assertions.assertNull(null);
+    }
+
+    @AfterAll
+    static void finalizarConexao() {
+        GerenciadorDeConexaoComBancoDeDados.finalizarConexao();
     }
 }

@@ -22,34 +22,20 @@
     SOFTWARE.
  */
 
-package com.github.willyancaetano.junit;
+package com.github.thiagohbn.junit;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-@TestMethodOrder(MethodOrderer.DisplayName.class)
-public class EscolhendoAOrdemTeste {
+public class ExceptionsTeste {
 
-    @DisplayName("Teste que valida se o usuário foi criado")
     @Test
-    void validaFluxoA() {
-        Assertions.assertTrue(true);
-    }
+    void validarCenarioDeExcecaoNaTransferencia() {
+        Conta contaOrigem = new Conta("123456", 0);
+        Conta contaDestino = new Conta("456548", 100);
 
-    @DisplayName("B")
-    @Test
-    void validaFluxoB() {
-        Assertions.assertTrue(true);
-    }
+        TransferenciaEntreContas transferenciaEntreContas = new TransferenciaEntreContas();
 
-    @DisplayName("C")
-    @Test
-    void validaFluxoC() {
-        Assertions.assertTrue(true);
-    }
-
-    @DisplayName("D")
-    @Test
-    void validaFluxoD() {
-        Assertions.assertTrue(true);
+        Assertions.assertDoesNotThrow(() -> transferenciaEntreContas.transfere(contaOrigem, contaDestino, 20));
     }
 }

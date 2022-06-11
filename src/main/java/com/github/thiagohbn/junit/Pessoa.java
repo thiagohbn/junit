@@ -22,34 +22,41 @@
     SOFTWARE.
  */
 
-package com.github.willyancaetano.junit;
-
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+package com.github.thiagohbn.junit;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
-public class PessoaTeste {
+public class Pessoa {
 
-    @Test
-    void deveCalcularIdadeCorretamente() {
-        Pessoa jessica = new Pessoa("Jéssica", LocalDateTime.of(2000, 1, 1, 15, 0, 0));
-        Assertions.assertEquals(22, jessica.getIdade());
+    private String nome;
+
+    private LocalDateTime nascimento;
+
+    public Pessoa(String nome, LocalDateTime nascimento) {
+        this.nome = nome;
+        this.nascimento = nascimento;
     }
 
-    @Test
-    void deveRetornarSeEhMaiorDeIdade() {
-        Pessoa jessica = new Pessoa("Jéssica", LocalDateTime.of(2000, 1, 1, 15, 0, 0));
-        Assertions.assertTrue(jessica.ehMaiorDeIdade());
-
-        Pessoa joao = new Pessoa("João", LocalDateTime.now());
-        Assertions.assertFalse(joao.ehMaiorDeIdade());
+    public int getIdade() {
+        return (int) ChronoUnit.YEARS.between(nascimento, LocalDateTime.now());
     }
 
-    @Test
-    void validaIgualdade() {
-        Pessoa pessoa = new Pessoa("Pessoa 1", LocalDateTime.now());
-        Assertions.assertSame(pessoa, pessoa);
+    public boolean ehMaiorDeIdade() {
+        return getIdade() >= 18;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pessoa pessoa = (Pessoa) o;
+        return nome.equals(pessoa.nome) && Objects.equals(nascimento, pessoa.nascimento);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, nascimento);
     }
 }

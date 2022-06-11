@@ -22,20 +22,32 @@
     SOFTWARE.
  */
 
-package com.github.willyancaetano.junit;
+package com.github.thiagohbn.junit;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+public class Conta {
 
-public class ExceptionsTeste {
+    private String numeroConta;
 
-    @Test
-    void validarCenarioDeExcecaoNaTransferencia() {
-        Conta contaOrigem = new Conta("123456", 0);
-        Conta contaDestino = new Conta("456548", 100);
+    private int saldo;
 
-        TransferenciaEntreContas transferenciaEntreContas = new TransferenciaEntreContas();
+    public Conta(String numeroConta, int saldo) {
+        this.numeroConta = numeroConta;
+        this.saldo = saldo;
+    }
 
-        Assertions.assertDoesNotThrow(() -> transferenciaEntreContas.transfere(contaOrigem, contaDestino, 20));
+    public String getNumeroConta() {
+        return numeroConta;
+    }
+
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public void lancaCredito(int valor) {
+        this.saldo += valor;
+    }
+
+    public void lancaDebito(int valor) {
+        this.saldo -= valor;
     }
 }
