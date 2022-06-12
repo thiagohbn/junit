@@ -31,18 +31,15 @@ import java.time.LocalDateTime;
 public class AfterBeforeTeste {
 
     @BeforeAll
-    static void configuraConexao() {
+    static void iniciaConexao() {
         GerenciadorDeConexaoComBancoDeDados.iniciarConexao();
+        System.out.println("BeforeAll");
     }
 
     @BeforeEach
     void insereDadosParaTeste() {
         GerenciadorDeConexaoComBancoDeDados.insereDados(new Pessoa("João", LocalDateTime.of(2000, 1, 1, 13, 0, 0)));
-    }
-
-    @AfterEach
-    void removeDadosDoTeste() {
-        GerenciadorDeConexaoComBancoDeDados.removeDados(new Pessoa("João", LocalDateTime.of(2000, 1, 1, 13, 0, 0)));
+        System.out.println("BeforeEach");
     }
 
     @Test
@@ -55,8 +52,15 @@ public class AfterBeforeTeste {
         Assertions.assertNull(null);
     }
 
+    @AfterEach
+    void removeDadosDoTeste() {
+        GerenciadorDeConexaoComBancoDeDados.removeDados(new Pessoa("João", LocalDateTime.of(2000, 1, 1, 13, 0, 0)));
+        System.out.println("AfterEach");
+    }
+
     @AfterAll
     static void finalizarConexao() {
         GerenciadorDeConexaoComBancoDeDados.finalizarConexao();
+        System.out.println("AfterAll");
     }
 }

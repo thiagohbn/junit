@@ -37,21 +37,21 @@ public class GerenciadorDeConexaoComBancoDeDados {
 
     public static void iniciarConexao() {
         //fez algo
-        LOGGER.info("Iniciou conexao");
+        LOGGER.info("Iniciou conexao\n");
     }
 
     public static void finalizarConexao() {
         //fez algo
-        LOGGER.info("finalizou conexao");
+        LOGGER.info("finalizou conexao\n");
     }
 
     public static void insereDados(Pessoa pessoa) {
         //insere pessoa no DB
-        LOGGER.info("inseriu dados");
+        LOGGER.info("inseriu dados\n");
     }
 
     public static void removeDados(Pessoa pessoa) {
         //remove pessoa no DB
-        LOGGER.info("removeu dados");
+        LOGGER.info("removeu dados\n");
     }
 }

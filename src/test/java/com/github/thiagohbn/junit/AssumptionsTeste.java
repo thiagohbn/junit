@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class AssumptionsTeste {
 
     @Test
-    void validarAlgoSomenteNoUsuarioWillyan() {
+    void validarAlgoSomenteNoUsuarioThiago() {
         Assumptions.assumeFalse("root".equals(System.getenv("USER")));
         Assertions.assertEquals(10, 5 + 5);
     }
